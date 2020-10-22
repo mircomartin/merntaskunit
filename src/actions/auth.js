@@ -4,7 +4,6 @@ import { tokenAuth } from "../config/token"
 
 //Actions
 import { types } from "../types/types"
-import { showAlert } from "./alertas"
 
 
 //Nuevo Usuario
@@ -20,6 +19,14 @@ export const startRegisterUser = (nombre, email, password) => {
 
         } catch (error) {
             console.log(error)
+            console.log(error.response.data.msg)
+
+            const alert = {
+                mensaje: error.response.data.msg,
+                categoria: 'alerta-error'
+            }
+
+            dispatch(errorLogin(alert))
         }
     }
 }

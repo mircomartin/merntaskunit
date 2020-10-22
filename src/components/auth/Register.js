@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 //Redux
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,6 +13,7 @@ import { useForm } from '../../hooks/useForm'
 
 export const Register = () => {
     const { alert } = useSelector(state => state.alertas)
+	const { mensaje } = useSelector((state) => state.auth);
 
     const dispatch = useDispatch()
     const [ formValues, handleInputChange ] = useForm({
@@ -41,6 +42,12 @@ export const Register = () => {
         dispatch(startRegisterUser(nombre, email, password))
 
     }
+
+    useEffect(() => {
+		if(mensaje) {
+			dispatch(showAlert(mensaje.mensaje, mensaje.categoria))
+		}
+	}, [mensaje])
 
     return (
         <div className="form-usuario">
