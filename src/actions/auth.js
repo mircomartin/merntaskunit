@@ -90,7 +90,14 @@ const login = (usuarioLogueado) => ({
 })
 
 //Cerrar Sesion
-export const logout = () => ({
+export const startLogout = () => {
+    return (dispatch) => {
+        localStorage.clear();
+        dispatch(logout())
+    }
+}
+
+const logout = () => ({
     type: types.logout,
 })
 

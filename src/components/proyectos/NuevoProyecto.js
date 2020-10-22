@@ -26,7 +26,6 @@ export const NuevoProyecto = () => {
 
 		} else {
 
-			formValues.id = Date.now()
 			dispatch(startAddProject(formValues))
 	
 			reset()

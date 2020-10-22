@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 //Redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,7 +26,7 @@ export const AppRouter = () => {
 
         dispatch(startLoggedUser())
           
-    }, [])
+    }, [dispatch])
 
     if(checking) return <h1>Espere....</h1>
     

@@ -4,7 +4,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 //Actions
-import { logout } from '../../actions/auth'
+import { startLogout } from '../../actions/auth'
 
 export const Barra = () => {
     const dispatch = useDispatch();
@@ -12,7 +12,7 @@ export const Barra = () => {
     const { user } = useSelector(state => state.auth)
 
     const handleLogout = () => {
-        dispatch(logout())
+        dispatch(startLogout())
     }
 
     return (

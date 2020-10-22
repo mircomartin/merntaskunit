@@ -1,3 +1,4 @@
+import { clienteAxios } from "../config/axios"
 import { types } from "../types/types"
 
 //Activar Formulario Nuevos Proyectos
@@ -14,10 +15,14 @@ export const activeError = () => ({
 })
 
 //Mostrar todos los proyectos
-export const startListProjects = (proyectos) => {
-    return (dispatch) => {
+export const startListProjects = () => {
+    return async (dispatch) => {
         try {
-            dispatch(listarProjects(proyectos))
+
+            const res = await clienteAxios.get('/api/proyectos')
+            
+            dispatch(listarProjects(res.data.proyectos))
+
         } catch (error) {
             console.log(error)
         }
@@ -31,8 +36,11 @@ const listarProjects = (proyectos) => ({
 
 //Agregar Proyectos
 export const startAddProject = (project) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         try {
+
+            const res = await clienteAxios.post('/api/proyectos', project)
+            console.log(res)
             dispatch(addProject(project))
         } catch (error) {
             console.log(error)

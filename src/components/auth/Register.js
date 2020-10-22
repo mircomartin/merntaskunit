@@ -44,10 +44,12 @@ export const Register = () => {
     }
 
     useEffect(() => {
+        
 		if(mensaje) {
 			dispatch(showAlert(mensaje.mensaje, mensaje.categoria))
-		}
-	}, [mensaje])
+        }
+        
+	}, [mensaje, dispatch])
 
     return (
         <div className="form-usuario">
