@@ -5,6 +5,7 @@ const initialState = {
     errorFormulario: false,
     formulario: false,
     proyectoActivo: null,
+    mensaje: false,
 }
 
 export const proyectosReducer = (state = initialState, action) => {
@@ -40,8 +41,14 @@ export const proyectosReducer = (state = initialState, action) => {
         case types.deleteProject:
             return {
                 ...state,
-                proyectos: state.proyectos.filter( proyecto => proyecto.id !== action.payload),
-                proyectoActivo: null
+                proyectos: state.proyectos.filter( proyecto => proyecto._id !== action.payload),
+                proyectoActivo: null,
+                mensaje: null,
+            }
+        case types.errorProject:
+            return {
+                ...state,
+                mensaje: action.payload,
             }
         default:
             return state;

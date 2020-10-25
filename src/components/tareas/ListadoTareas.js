@@ -25,15 +25,15 @@ export const ListadoTareas = () => {
 	];
 
 	useEffect(() => {
-		
+
 		dispatch(startListTasks(tareasProyecto))
 
-	}, [])
+	}, [dispatch])
 
 	const handleDelete = () => {
 		dispatch(startDeleteProject())
 	}
-	
+
 	return (
 		<>
 			{!proyectoActivo ? (

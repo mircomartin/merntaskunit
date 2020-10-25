@@ -1,7 +1,7 @@
 import React from 'react'
-import { ListadoProyectos } from '../proyectos/ListadoProyectos'
 
 //Components
+import { ListadoProyectos } from '../proyectos/ListadoProyectos'
 import { NuevoProyecto } from '../proyectos/NuevoProyecto'
 
 export const Sidebar = () => {

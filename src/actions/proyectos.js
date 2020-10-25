@@ -69,17 +69,29 @@ const activeProject = (activo) => ({
     payload: activo,
 })
 
-
 //Eliminar Proyecto
 export const startDeleteProject = () => {
-    return (dispatch, getState) => {
+    return async (dispatch, getState) => {
 
         const { proyectoActivo } = getState().proyectos
         
         try {
-            dispatch(deleteProject(proyectoActivo.id))
+
+            await clienteAxios.delete(`/api/proyectos/${proyectoActivo._id}`)
+            dispatch(deleteProject(proyectoActivo._id))
+            
         } catch (error) {
             console.log(error)
+
+            const alert = {
+                mensaje: 'Hubo un error',
+                categoria: 'alerta-error'
+            }
+            console.log(alert)
+            dispatch({
+                type: types.errorProject,
+                payload: alert
+            })
         }
     }
 }

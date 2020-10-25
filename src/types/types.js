@@ -12,6 +12,7 @@ export const types = {
     addProyect: '[Proyectos] Proyecto Agregado',
     projectActive: '[Proyectos] Proyecto Activo',
     deleteProject: '[Proyectos] Proyecto Eliminado',
+    errorProject: '[Proyectos] Hubo un error al eliminar',
 
     listarTareas: '[Tareas] Listado de Tareas',
     listarTareasProyecto: '[Tareas] Listado de Tareas de Proyecto',
