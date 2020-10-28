@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 
 //Actions
 import { startActiveProject } from '../../actions/proyectos';
-import { projectTasks } from '../../actions/tareas';
+import { projectTasks, startListTasks } from '../../actions/tareas';
 
 export const Proyecto = ({proyecto}) => {
 
@@ -13,7 +13,7 @@ export const Proyecto = ({proyecto}) => {
 
     const handleSelect =  () => {
         dispatch(startActiveProject(proyecto))
-        dispatch(projectTasks(proyecto.id))
+        dispatch(startListTasks(proyecto._id))
     }
 
     return (

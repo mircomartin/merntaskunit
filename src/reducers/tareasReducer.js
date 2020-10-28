@@ -1,7 +1,6 @@
 import { types } from '../types/types';
 
 const initialState = {
-	tareas: [],
 	tareasProyecto: [],
 	errorTarea: false,
 	tareaActiva: null,
@@ -17,14 +16,7 @@ export const tareasReducer = (state = initialState, action) => {
 		case types.listarTareas:
 			return {
 				...state,
-				tareas: action.payload,
-			};
-		case types.listarTareasProyecto:
-			return {
-				...state,
-				tareasProyecto: state.tareas.filter(
-					(tarea) => tarea.proyectoID === action.payload,
-				),
+				tareasProyecto: action.payload,
 			};
 		case types.activedTask:
 			return {
@@ -34,20 +26,20 @@ export const tareasReducer = (state = initialState, action) => {
 		case types.addTask:
 			return {
 				...state,
-				tareas: [...state.tareas, action.payload],
+				tareasProyecto: [...state.tareasProyecto, action.payload],
 				errorTarea: false,
 			};
 		case types.deleteTask:
 			return {
 				...state,
-				tareas: state.tareas.filter((tarea) => tarea.id !== action.payload),
+				tareasProyecto: state.tareasProyecto.filter((tarea) => tarea._id !== action.payload),
 				tareaActiva: null,
 			};
 		case types.updatedStateTask:
 			return {
 				...state,
-				tareas: state.tareas.map((tarea) =>
-					tarea.id === action.payload.id ? action.payload : tarea,
+				tareasProyecto: state.tareasProyecto.map((tarea) =>
+					tarea._id === action.payload._id ? action.payload : tarea,
 				),
 				tareaActiva: null,
 			};

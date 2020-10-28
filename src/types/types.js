@@ -15,7 +15,6 @@ export const types = {
     errorProject: '[Proyectos] Hubo un error al eliminar',
 
     listarTareas: '[Tareas] Listado de Tareas',
-    listarTareasProyecto: '[Tareas] Listado de Tareas de Proyecto',
     addTask: '[Tareas] Tarea Agregada',
     activeErrorTask: '[Tareas] Error Tarea Activo',
     deleteTask: '[Tareas] Tarea Eliminada',

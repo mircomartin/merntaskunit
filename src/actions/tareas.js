@@ -1,10 +1,14 @@
+import { clienteAxios } from "../config/axios"
 import { types } from "../types/types"
 
 //Listar Tareas
-export const startListTasks = (tareas) => {
-    return (dispatch) => {
+export const startListTasks = (proyecto) => {
+    return async (dispatch) => {
         try {
-            dispatch(listTasks(tareas))
+
+            const resp = await clienteAxios.get('/api/tareas', { params: {proyecto} })
+
+            dispatch(listTasks(resp.data.tareas))
 
         } catch (error) {
             console.log(error)
@@ -17,16 +21,15 @@ const listTasks = (tareas) => ({
     payload: tareas,
 })
 
-export const projectTasks = (id) => ({
-    type: types.listarTareasProyecto,
-    payload: id
-})
-
 //Agregar Tarea
 export const startAddTask = (task) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         try {
-            dispatch(addTask(task))
+
+            const resp = await clienteAxios.post('/api/tareas', task)
+            
+            dispatch(addTask(resp.data.tarea))
+
         } catch (error) {
             console.log(error)
         }
@@ -44,10 +47,13 @@ export const errorTask = () => ({
 })
 
 //Eliminar Tarea
-export const startDeleteTask = (id) => {
-    return (dispatch) => {
+export const startDeleteTask = (id, proyecto) => {
+    return async (dispatch) => {
         try {
+
+            await clienteAxios.delete(`/api/tareas/${id}`, { params: {proyecto} })
             dispatch(deletedTask(id))
+
         } catch (error) {
             console.log(error)
         }
@@ -61,8 +67,9 @@ const deletedTask = (id) => ({
 
 //Editar Estado
 export const startUpdateState = (tarea) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         try {
+            await clienteAxios.put(`/api/tareas/${tarea._id}`, tarea)
             dispatch(updatedState(tarea))
         } catch (error) {
             console.log(error)

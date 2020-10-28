@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 //Actions
-import { errorTask, projectTasks, startAddTask, startUpdateState } from '../../actions/tareas';
+import { errorTask, startAddTask, startListTasks, startUpdateState } from '../../actions/tareas';
 
 //Hooks
 import { useForm } from '../../hooks/useForm';
@@ -21,7 +21,7 @@ export const FormTarea = () => {
 	})
 
 	useEffect(() => {
-		if(tareaActiva?.id){
+		if(tareaActiva?._id){
 			reset(tareaActiva)
 		}
 		// eslint-disable-next-line
@@ -39,8 +39,7 @@ export const FormTarea = () => {
 
 			if (!tareaActiva) {
 
-				formValues.id = Date.now()
-				formValues.proyectoID = proyectoActivo.id
+				formValues.proyecto = proyectoActivo._id
 	
 				dispatch(startAddTask(formValues))
 	
@@ -54,7 +53,7 @@ export const FormTarea = () => {
 
 			}
 
-			dispatch(projectTasks(proyectoActivo.id))
+			dispatch(startListTasks(proyectoActivo._id))
 
 		}
 	}

@@ -4,7 +4,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
 //Actions
-import { activedTask, projectTasks, startDeleteTask, startUpdateState } from '../../actions/tareas';
+import { activedTask, startDeleteTask, startListTasks, startUpdateState } from '../../actions/tareas';
 
 export const Tarea = ({ tarea }) => {
 
@@ -12,9 +12,10 @@ export const Tarea = ({ tarea }) => {
 	const { proyectoActivo} = useSelector(state => state.proyectos )
 
 	const handleDelete = () => {
-		dispatch(startDeleteTask(tarea.id))
 
-		dispatch(projectTasks(proyectoActivo.id))
+		dispatch(startDeleteTask(tarea._id, proyectoActivo._id))
+		dispatch(startListTasks(proyectoActivo._id))
+
 	}
 
 	const handleState = () => {

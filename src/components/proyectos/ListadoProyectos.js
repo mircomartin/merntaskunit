@@ -14,10 +14,10 @@ export const ListadoProyectos = () => {
 	const { alert } = useSelector((state) => state.alertas);
 
 	useEffect(() => {
+
 		dispatch(startListProjects());
 		// eslint-disable-next-line
 
-        
 	}, [dispatch]);
     
     useEffect(() => {

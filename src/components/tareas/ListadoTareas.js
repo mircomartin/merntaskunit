@@ -13,22 +13,9 @@ import { Tarea } from './Tarea';
 export const ListadoTareas = () => {
 
 	const { proyectoActivo } = useSelector((state) => state.proyectos);
-	const { tareasProyecto: tareas } = useSelector((state) => state.tareas);
+	const { tareasProyecto } = useSelector((state) => state.tareas);
 
 	const dispatch = useDispatch();
-
-	const tareasProyecto = [
-		{ id: 1, nombre: 'Tienda Virtual', estado: true, proyectoID: 1 },
-		{ id: 2, nombre: 'Intranet', estado: true, proyectoID: 1 },
-		{ id: 3, nombre: 'Diseño del Sitio', estado: false, proyectoID: 3 },
-		{ id: 4, nombre: 'Maquetado', estado: false, proyectoID: 2 },
-	];
-
-	useEffect(() => {
-
-		dispatch(startListTasks(tareasProyecto))
-
-	}, [dispatch])
 
 	const handleDelete = () => {
 		dispatch(startDeleteProject())
@@ -42,13 +29,13 @@ export const ListadoTareas = () => {
 				<>
 					<h2>Proyecto: {proyectoActivo?.nombre}</h2>
 					<ul className="listado-tareas">
-						{tareas.length === 0 ? (
+						{tareasProyecto.length === 0 ? (
 							<li className="tarea">
 								<p>No hay tarea</p>
 							</li>
 						) : (
-							tareas.map((tarea) => (
-								<Tarea key={tarea.id} tarea={tarea} />
+							tareasProyecto.map((tarea) => (
+								<Tarea key={tarea._id} tarea={tarea} />
 							))
 						)}
 					</ul>
